@@ -5,9 +5,30 @@
     font-family: 'JosefinSans';
     font-size: 18px;
 }
+body{
+    background-color: #000;
+}
 .header__background{
     width: 100%;
     height: 100%;
+}
+
+
+main{
+    position: relative;
+    bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.main-header__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-header__title{
+    color: #fff;
+    text-transform: uppercase;
 }
 
 
