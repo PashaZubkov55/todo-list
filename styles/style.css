@@ -92,7 +92,72 @@ main{
 
 }
 
+/*задачи*/
+.tasks__wrapper{
+    background-color:#25273c;
+    margin-top: 23px;
+   
+   
+}
+.task__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2b2d46;
+    padding: 14px 10px;
+    margin-top: 20px;
+}
+.task:hover{
+    cursor: pointer;
+}
+.task__left{
+    display: flex;
+    align-items: center;
+}
+.task__text{
+    color: #fff;
+    margin-left:1rem;
+}
 
+
+/*options*/
+
+
+.tasks__options{
+    display: flex;
+    padding: 14px 10px;
+    background-color: #25273c;
+    color: #575972;
+    align-items: center;
+    
+
+}
+.options__left{
+    display: flex;
+    margin-right: 1rem;
+}
+.options__center{
+    display: flex;
+}
+
+.options__right{
+    display: flex;
+}
+.options__item{
+    margin-left: 0.5rem;
+}
+.options__item:hover{
+    cursor: pointer;
+    color: #fff; 
+}
+.options__right{
+    margin-left: 1rem;
+     
+}
+.options__right:hover{
+    cursor: pointer;
+    color: #fff;
+}
 
 
 
