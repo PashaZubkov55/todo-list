@@ -5,10 +5,160 @@
     font-family: 'JosefinSans';
     font-size: 18px;
 }
+body{
+    background-color: #000;
+}
 .header__background{
     width: 100%;
     height: 100%;
 }
+
+
+main{
+    position: relative;
+    bottom: 12rem;
+    display: flex;
+    justify-content: center;
+}
+
+.main-header__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-header__title h1{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+.form__header{
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    background-color:#25273c;
+    padding: 14px 10px
+
+}
+
+/*стили чекбокса*/
+
+
+.fake_check{
+    display: block;
+    width: 30px;
+    height: 30px;
+    border:  2px solid #fff;
+    border-radius: 50%;
+    border-color: #36384d;
+    position: relative;
+
+}
+.fake_check::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-image: url("./image/icon-check.svg");
+    background-repeat: no-repeat;
+    opacity: 0;;
+    
+
+}
+.fake_check:hover{
+    cursor: pointer;
+    border-color:#887bb1
+}
+.check_search{
+ display: none;
+
+}
+/*появление галочки*/
+.check_search:checked + .fake_check::before{
+    opacity: 1;
+}
+/*стили поиска*/
+
+.search_task{
+    width: 300px;
+    height: 30px;
+    background: #25273c;
+    border: none;
+    margin-left: 1rem;
+    outline: none;
+    color: #fff;
+
+}
+
+/*задачи*/
+.tasks__wrapper{
+    background-color:#25273c;
+    margin-top: 23px;
+   
+   
+}
+.task__wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2b2d46;
+    padding: 14px 10px;
+    margin-top: 20px;
+}
+.task:hover{
+    cursor: pointer;
+}
+.task__left{
+    display: flex;
+    align-items: center;
+}
+.task__text{
+    color: #fff;
+    margin-left:1rem;
+}
+
+
+/*options*/
+
+
+.tasks__options{
+    display: flex;
+    padding: 14px 10px;
+    background-color: #25273c;
+    color: #575972;
+    align-items: center;
+    
+
+}
+.options__left{
+    display: flex;
+    margin-right: 1rem;
+}
+.options__center{
+    display: flex;
+}
+
+.options__right{
+    display: flex;
+}
+.options__item{
+    margin-left: 0.5rem;
+}
+.options__item:hover{
+    cursor: pointer;
+    color: #fff; 
+}
+.options__right{
+    margin-left: 1rem;
+     
+}
+.options__right:hover{
+    cursor: pointer;
+    color: #fff;
+}
+
 
 
 
