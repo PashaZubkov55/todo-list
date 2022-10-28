@@ -16,7 +16,7 @@ body{
 
 main{
     position: relative;
-    bottom: 3rem;
+    bottom: 12rem;
     display: flex;
     justify-content: center;
 }
@@ -26,10 +26,74 @@ main{
     justify-content: space-between;
     align-items: center;
 }
-.main-header__title{
+.main-header__title h1{
     color: #fff;
     text-transform: uppercase;
+    font-size: 24px;
 }
+.form__header{
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    background-color:#25273c;
+    padding: 14px 10px
+
+}
+
+/*стили чекбокса*/
+
+
+.fake_check{
+    display: block;
+    width: 30px;
+    height: 30px;
+    border:  2px solid #fff;
+    border-radius: 50%;
+    border-color: #36384d;
+    position: relative;
+
+}
+.fake_check::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-image: url("./image/icon-check.svg");
+    background-repeat: no-repeat;
+    opacity: 0;;
+    
+
+}
+.fake_check:hover{
+    cursor: pointer;
+    border-color:#887bb1
+}
+.check_search{
+ display: none;
+
+}
+/*появление галочки*/
+.check_search:checked + .fake_check::before{
+    opacity: 1;
+}
+/*стили поиска*/
+
+.search_task{
+    width: 300px;
+    height: 30px;
+    background: #25273c;
+    border: none;
+    margin-left: 1rem;
+    outline: none;
+    color: #fff;
+
+}
+
+
+
 
 
 
