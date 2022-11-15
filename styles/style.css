@@ -78,18 +78,22 @@ main{
 /*появление галочки*/
 .check_search:checked + .fake_check::before{
     opacity: 1;
+    
 }
 /*стили поиска*/
 
 .search_task{
     width: 300px;
     height: 30px;
-    background: #25273c;
+    background-color: #25273c;
     border: none;
     margin-left: 1rem;
     outline: none;
     color: #fff;
 
+}
+.main__trigger:hover{
+    cursor: pointer;
 }
 
 /*задачи*/
@@ -129,6 +133,7 @@ main{
     background-color: #25273c;
     color: #575972;
     align-items: center;
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, .2);
     
 
 }
