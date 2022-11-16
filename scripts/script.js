@@ -9,12 +9,40 @@ const tasksOptions = document.querySelector('.tasks__options')
 const header = document.querySelector('.header')
 const optionsItems = document.querySelectorAll('.options__item')
 //#595b67
+let tasks = [
+    {
+        name: 'task',
+        color: '#fff'
 
+    }
+] 
 
 const fields = {
     background: 'white',
 }
 //функции 
+ let render = ()=>{
+    let html = tasks.map((task)=>{
+        return `
+        <div class="task">
+        <div class="task__wrapper">
+            <div class="task__left">
+                <label  class="form__label label">
+                    <input class="check check_search" type="checkbox">
+                    <span class="fake fake_check"></span>
+                </label>
+                <div class="task__text" style="color: ${task.color};">${task.name}</div>
+            </div>
+            <div class="task__right"> <img src="./styles/image/icon-cross.svg" alt="icon-cross"></div>
+        </div>
+    </div>
+        
+        `
+    })
+    taskList.innerHTML = html
+ }
+
+ render()
 
 let chencheBackground = ()=>{
     if (fields.background === 'white') {
@@ -27,8 +55,8 @@ let chencheBackground = ()=>{
         taskList.style.backgroundColor = '#fff'
         form.style.backgroundColor = '#fff'
         tasksOptions.style.backgroundColor = '#fff'
-      for (item of  taskText ) {
-            item.style.color = '#25273c' 
+      for (item of  tasks ) {
+            item.color = '#25273c' 
       }   
     }
     else{
@@ -41,12 +69,12 @@ let chencheBackground = ()=>{
         taskList.style.backgroundColor = '#25273c'
         form.style.backgroundColor = '#25273c'
         tasksOptions.style.backgroundColor = '#25273c'
-        for (item of  taskText ) {
-            item.style.color = '#fff'
+        for (item of  tasks ) {
+            item.color = '#fff'
     
     }
 }
-
+    render()
     
 }
 let hoverOption = ()=>{
