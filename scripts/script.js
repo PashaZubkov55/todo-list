@@ -50,11 +50,13 @@ let chencheBackground = ()=>{
     
 }
 let hoverOption = ()=>{
+    
     if (fields.background == 'night') {
-        
+       
     for (let index = 0; index < optionsItems.length; index++) {
             optionsItems[index].addEventListener('mouseover', ()=>{
             optionsItems[index].style.color = '#000'
+
     })
     
     }
@@ -68,11 +70,25 @@ let hoverOption = ()=>{
         }
 
   }
+
+}
+let onHoverOption = ()=>{
+        for (let index = 0; index < optionsItems.length; index++) {
+                optionsItems[index].addEventListener('mouseout', ()=>{
+                optionsItems[index].style.color = '#52546b'
+    
+        })
+        
+        }
+      
+             
+        
+
 }
 
 
 
 
-
+tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
 trigger.addEventListener('click', chencheBackground)
