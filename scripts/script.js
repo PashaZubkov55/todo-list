@@ -36,7 +36,7 @@ let chencheBackground = ()=>{
         trigger.innerHTML = `<img  src="./styles/image/icon-sun.svg"  alt="trigger">`
         header.innerHTML = '<img class="header__background" src="./styles/image/bg-desktop-dark.jpg" alt="background">'
         body.style.backgroundColor = '#000'
-        input.style.color = '#25273c'
+        input.style.color = '#fff'
         input.style.backgroundColor ='#25273c'
         taskList.style.backgroundColor = '#25273c'
         form.style.backgroundColor = '#25273c'
