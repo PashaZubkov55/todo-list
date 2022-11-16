@@ -7,7 +7,8 @@ const form = document.querySelector('.form__header')
 const taskText = document.querySelectorAll('.task__text')
 const tasksOptions = document.querySelector('.tasks__options')
 const header = document.querySelector('.header')
-
+const optionsItems = document.querySelectorAll('.options__item')
+//#595b67
 
 
 const fields = {
@@ -48,6 +49,30 @@ let chencheBackground = ()=>{
 
     
 }
+let hoverOption = ()=>{
+    if (fields.background == 'night') {
+        
+    for (let index = 0; index < optionsItems.length; index++) {
+            optionsItems[index].addEventListener('mouseover', ()=>{
+            optionsItems[index].style.color = '#000'
+    })
+    
+    }
+  }
+  else{
+    for (let index = 0; index < optionsItems.length; index++) {
+        optionsItems[index].addEventListener('mouseover', ()=>{
+            optionsItems[index].style.color = '#fff'
+        })
+        
+        }
+
+  }
+}
 
 
+
+
+
+tasksOptions.addEventListener('mouseover',hoverOption)
 trigger.addEventListener('click', chencheBackground)
