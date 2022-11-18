@@ -8,18 +8,19 @@ const taskText = document.querySelectorAll('.task__text')
 const tasksOptions = document.querySelector('.tasks__options')
 const header = document.querySelector('.header')
 const optionsItems = document.querySelectorAll('.options__item')
+const check = document.querySelector('#check')
 // сохранненые данные 
-let tasks = [
-    {
-        name: 'aa',
-        color: '#fff'
+let tasks =[
+{
+    name: 'aa',
+    color: '#fff'
 
-    },
-    {
-        name: 'task2',
-        color: '#fff'
+},
+{
+    name: 'task2',
+    color: '#fff'
 
-    }
+}
 ] 
 //рабочий масив 
 let workTaskList = tasks.concat()
@@ -31,9 +32,10 @@ const fields = {
 }
 //функции 
  let render = ()=>{
-    
+   
+        if(store.getItem('tasks')) {
 
-    let html = workTaskList.map((task)=>{
+    let html =   workTaskList.map((task)=>{
         return `
         <div class="task">
         <div class="task__wrapper">
@@ -51,9 +53,28 @@ const fields = {
         `
     })
     taskList.innerHTML = html
+ 
+} else{
+    html = `<h1 class = 'task__massage'>No tasks</h1>`
+    taskList.innerHTML = html
+}
+ }
+    
+ let dataLoading = ()=>{
+    if (store.getItem('tasks')) {
+       // workTaskList = JSON.parse(store.getItem('tasks'))
+       
+        render()
+    } else{
+        store.setItem('tasks', JSON.stringify(tasks))
+        render()
+        console.log('render')
+    }
  }
 
- render()
+ 
+  dataLoading() 
+
 
 let chencheBackground = ()=>{
     if (fields.background === 'white') {
@@ -146,7 +167,17 @@ let taskFilter = (array)=>{
   
  }
 
-
+let inputCheck=()=>{
+    if(fields.filtred) {
+        fields.filtred = false
+        check.style.background = 'red'
+    } else{
+        fields.filtred = true
+        check.style.background = 'transparent'
+    }
+    console.log(fields.filtred)
+}
+check.addEventListener('click', inputCheck)
 document.addEventListener('keyup', inputChenge)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)

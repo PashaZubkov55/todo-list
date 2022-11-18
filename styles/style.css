@@ -163,6 +163,12 @@ main{
     color: #fff;
 }
 
+/*massage*/
+.task__massage{
+    text-align: center;
+    color:red;
+    padding: 20px 0;
+}
 
 
 
