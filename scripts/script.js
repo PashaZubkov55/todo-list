@@ -11,7 +11,7 @@ const optionsItems = document.querySelectorAll('.options__item')
 // сохранненые данные 
 let tasks = [
     {
-        name: 'task',
+        name: 'aa',
         color: '#fff'
 
     },
@@ -33,7 +33,7 @@ const fields = {
  let render = ()=>{
     
 
-    let html = tasks.map((task)=>{
+    let html = workTaskList.map((task)=>{
         return `
         <div class="task">
         <div class="task__wrapper">
@@ -126,8 +126,8 @@ let onHoverOption = ()=>{
 }
 
 let taskFilter = (array)=>{
-   // let newarray = array.concat()
-    return array.filter((item)=>{
+   let arrayFiltered = array.concat()
+   return arrayFiltered.filter((item)=>{
         return  item.name.indexOf(input.value) !== -1
       
     })  
@@ -135,7 +135,7 @@ let taskFilter = (array)=>{
 
  let inputChenge = (event)=>{
     if (event.keyCode == 13) {
-        tasks = taskFilter(tasks)  
+        workTaskList = taskFilter(tasks)  
         render()
 
         
