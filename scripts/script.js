@@ -8,20 +8,31 @@ const taskText = document.querySelectorAll('.task__text')
 const tasksOptions = document.querySelector('.tasks__options')
 const header = document.querySelector('.header')
 const optionsItems = document.querySelectorAll('.options__item')
-//#595b67
+// сохранненые данные 
 let tasks = [
     {
         name: 'task',
         color: '#fff'
 
+    },
+    {
+        name: 'task2',
+        color: '#fff'
+
     }
 ] 
+//рабочий масив 
+let workTaskList = tasks.concat()
+ const store = localStorage
 
 const fields = {
     background: 'white',
+    filtred: true
 }
 //функции 
  let render = ()=>{
+    
+
     let html = tasks.map((task)=>{
         return `
         <div class="task">
@@ -114,9 +125,29 @@ let onHoverOption = ()=>{
 
 }
 
+let taskFilter = (array)=>{
+   // let newarray = array.concat()
+    return array.filter((item)=>{
+        return  item.name.indexOf(input.value) !== -1
+      
+    })  
+}
+
+ let inputChenge = (event)=>{
+    if (event.keyCode == 13) {
+        tasks = taskFilter(tasks)  
+        render()
+
+        
+    }
+   
+
+   
+  
+ }
 
 
-
+document.addEventListener('keyup', inputChenge)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
 trigger.addEventListener('click', chencheBackground)
