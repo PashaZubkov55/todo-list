@@ -4,11 +4,14 @@ const trigger = document.querySelector('.main__trigger')
 const input  = document.querySelector('.search_task')
 const taskList = document.querySelector('.tasks__wrapper')
 const form = document.querySelector('.form__header')
+const formSubmit = document.querySelector('.form')
 const taskText = document.querySelectorAll('.task__text')
 const tasksOptions = document.querySelector('.tasks__options')
 const header = document.querySelector('.header')
 const optionsItems = document.querySelectorAll('.options__item')
+let fake = document.querySelectorAll('.fake_check')
 const check = document.querySelector('#check')
+
 // сохранненые данные 
 let tasks =[
 {
@@ -167,6 +170,10 @@ let taskFilter = (array)=>{
   
  }
 
+let  preventForm = (event)=>{
+    event.preventDefault()
+}
+
 let inputCheck=()=>{
     if(fields.filtred) {
         fields.filtred = false
@@ -177,6 +184,8 @@ let inputCheck=()=>{
     }
     console.log(fields.filtred)
 }
+
+formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)
 document.addEventListener('keyup', inputChenge)
 tasksOptions.addEventListener('mouseout', onHoverOption)
