@@ -11,6 +11,8 @@ const header = document.querySelector('.header')
 const optionsItems = document.querySelectorAll('.options__item')
 let fake = document.querySelectorAll('.fake_check')
 const check = document.querySelector('#check')
+const checkBoxList = document.querySelectorAll('#heckBoxList')
+
 
 // сохранненые данные 
 let tasks =[
@@ -45,7 +47,7 @@ const fields = {
             <div class="task__left">
                 <label  class="form__label label">
                     <input class="check check_search" type="checkbox">
-                    <span class="fake fake_check"></span>
+                    <span class="fake fake_check" id= 'heckBoxList'></span>
                 </label>
                 <div class="task__text" style="color: ${task.color};">${task.name}</div>
             </div>
@@ -177,16 +179,19 @@ let  preventForm = (event)=>{
 let inputCheck=()=>{
     if(fields.filtred) {
         fields.filtred = false
-        check.style.background = 'red'
+        
     } else{
         fields.filtred = true
-        check.style.background = 'transparent'
     }
     console.log(fields.filtred)
 }
 
+let chencheBoxList = ()=>{
+  
+}
 formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)
+document.addEventListener('click', chencheBoxList)
 document.addEventListener('keyup', inputChenge)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)

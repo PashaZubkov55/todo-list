@@ -69,16 +69,19 @@ main{
 }
 .fake_check:hover{
     cursor: pointer;
-    border-color:#887bb1
+    border-color: #a378ec;
 }
 .check_search{
  display: none;
 
 }
+/*bacground checkbox*/ 
+.check_search:checked  + .fake_check {
+    background: linear-gradient(to bottom right, #76b2fa, #a378ec);
+}
 /*появление галочки*/
 .check_search:checked + .fake_check::before{
     opacity: 1;
-    
 }
 /*стили поиска*/
 
