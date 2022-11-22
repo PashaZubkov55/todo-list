@@ -118,36 +118,51 @@ let hoverOption = ()=>{
     
     if (fields.background == 'night') {
        
-    for (let index = 0; index < optionsItems.length; index++) {
-            optionsItems[index].addEventListener('mouseover', ()=>{
+    for (let index = 0; index< optionsItems.length; index++){
+        optionsItems[index] .addEventListener('mouseover', ()=>{
+            
+                    
+                
             optionsItems[index].style.color = '#000'
+
 
     })
     
     }
-  }
-  else{
-    for (let index = 0; index < optionsItems.length; index++) {
-        optionsItems[index].addEventListener('mouseover', ()=>{
+} else{
+    for (let index = 0; index< optionsItems.length; index++){
+        optionsItems[index] .addEventListener('mouseover', ()=>{
+            
+                    
+                
             optionsItems[index].style.color = '#fff'
-        })
-        
-        }
+
+
+    })
+    
+    }
 
   }
 
 }
+
+ 
+
+
 let onHoverOption = ()=>{
-        for (let index = 0; index < optionsItems.length; index++) {
-                optionsItems[index].addEventListener('mouseout', ()=>{
+    for (let index = 0; index < optionsItems.length; index++) {
+            optionsItems[index].addEventListener('mouseout', ()=>{
+                if ( optionsItems.className == 'active') {
+                    optionsItems[index].style.color = 'red'
+                }
                 optionsItems[index].style.color = '#52546b'
+
+    })
     
-        })
-        
-        }
-      
-             
-        
+    }
+  
+         
+    
 
 }
 
