@@ -27,9 +27,10 @@ let tasks =[
 
 }
 ] 
+const store = localStorage
 //рабочий масив 
-let workTaskList = tasks.concat()
- const store = localStorage
+let workTaskList = JSON.parse(store.getItem('tasks'))
+ 
 
 const fields = {
     background: 'white',
@@ -60,18 +61,18 @@ const fields = {
     taskList.innerHTML = html
  
 } else{
-    html = `<h1 class = 'task__massage'>No tasks</h1>`
+    html = `<h1 class = 'task__massage'>No task list</h1>`
     taskList.innerHTML = html
 }
  }
     
  let dataLoading = ()=>{
     if (store.getItem('tasks')) {
-       // workTaskList = JSON.parse(store.getItem('tasks'))
+        workTaskList = JSON.parse(store.getItem('tasks'))
        
         render()
     } else{
-        store.setItem('tasks', JSON.stringify(tasks))
+       // store.setItem('tasks', JSON.stringify(tasks))
         render()
         console.log('render')
     }
@@ -92,7 +93,7 @@ let chencheBackground = ()=>{
         taskList.style.backgroundColor = '#fff'
         form.style.backgroundColor = '#fff'
         tasksOptions.style.backgroundColor = '#fff'
-      for (item of  tasks ) {
+      for (item of  workTaskList ) {
             item.color = '#25273c' 
       }   
     }
@@ -106,7 +107,7 @@ let chencheBackground = ()=>{
         taskList.style.backgroundColor = '#25273c'
         form.style.backgroundColor = '#25273c'
         tasksOptions.style.backgroundColor = '#25273c'
-        for (item of  tasks ) {
+        for (item of  workTaskList ) {
             item.color = '#fff'
     
     }
@@ -172,19 +173,27 @@ let taskFilter = (array)=>{
         return  item.name.indexOf(input.value) !== -1
       
     })  
+    
 }
 
  let inputChenge = (event)=>{
     if (event.keyCode == 13) {
-        workTaskList = taskFilter(tasks)  
-        render()
+        if (fields.filtred) {
+            workTaskList = taskFilter(JSON.parse(store.getItem('tasks')))
+            input.value = ''
+            render()
+            
+            
+        }else{
+            createTask()
+            input.value = ''
 
-        
+
+            
+        }
+                     
     }
-   
-
-   
-  
+    
  }
 
 let  preventForm = (event)=>{
@@ -201,12 +210,55 @@ let inputCheck=()=>{
     console.log(fields.filtred)
 }
 
-let chencheBoxList = ()=>{
-  
+let createTask = ()=>{
+    let array = []
+    let task
+    if (store.getItem('tasks')) {
+         array =  JSON.parse(store.getItem('tasks'))
+        if (fields.background === 'white') {
+            task = {
+               name: input.value,
+               color: '#fff',
+   
+           }  
+
+           
+       } else{
+        task = {
+            name: input.value,
+            color: '#25273c',
+ 
+        }
+        
+    }
+      
+
+}  else{
+    if (fields.background === 'white') {
+        task = {
+           name: input.value,
+           color: '#fff',
+
+       }  
+       
+   }  else{
+    task = {
+        name: input.value,
+        color: '#25273c',
+
+    }
+    
 }
+
+
+}
+array.push(task)
+store.setItem('tasks', JSON.stringify(array))
+dataLoading() 
+}
+
 formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)
-document.addEventListener('click', chencheBoxList)
 document.addEventListener('keyup', inputChenge)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
