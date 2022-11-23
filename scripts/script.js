@@ -179,12 +179,18 @@ let taskFilter = (array)=>{
  let inputChenge = (event)=>{
     if (event.keyCode == 13) {
         if (fields.filtred) {
+            if (input.value === '') {
+                render()
+                
+            }
             workTaskList = taskFilter(JSON.parse(store.getItem('tasks')))
-            input.value = ''
             render()
             
             
         }else{
+            if (input.value === '') {
+              return
+            }
             createTask()
             input.value = ''
 
