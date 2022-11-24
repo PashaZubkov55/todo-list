@@ -12,6 +12,7 @@ const optionsItems = document.querySelectorAll('.options__item')
 let fake = document.querySelectorAll('.fake_check')
 const check = document.querySelector('#check')
 const checkBoxList = document.querySelectorAll('#heckBoxList')
+const del = document.querySelectorAll('.task__right')
 
 
 // сохранненые данные 
@@ -220,9 +221,12 @@ let createTask = ()=>{
     let array = []
     let task
     if (store.getItem('tasks')) {
-         array =  JSON.parse(store.getItem('tasks'))
+         array = JSON.parse(store.getItem('tasks'))
+        let  elem = array.length -1
+       let  id = elem +1 
         if (fields.background === 'white') {
             task = {
+                id: id,
                name: input.value,
                color: '#fff',
    
@@ -231,6 +235,7 @@ let createTask = ()=>{
            
        } else{
         task = {
+            id: id,
             name: input.value,
             color: '#25273c',
  
@@ -242,13 +247,16 @@ let createTask = ()=>{
 }  else{
     if (fields.background === 'white') {
         task = {
+            id: 0,
            name: input.value,
            color: '#fff',
 
        }  
        
    }  else{
+     
     task = {
+        id: 0,
         name: input.value,
         color: '#25273c',
 
