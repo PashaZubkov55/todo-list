@@ -67,16 +67,26 @@ const fields = {
 }
  }
     
+ let ginirateId = (array)=>{
+    for (let index = 0; index < array.length; index++) {
+        let id = index
+         array[index].id = id
+        console.log(array[index])
+    }
+    store.setItem('tasks', JSON.stringify(array))
+
+}
  let dataLoading = ()=>{
     if (store.getItem('tasks')) {
         workTaskList = JSON.parse(store.getItem('tasks'))
-       
+        ginirateId(workTaskList)
         render()
     } else{
        // store.setItem('tasks', JSON.stringify(tasks))
         render()
         console.log('render')
     }
+
  }
 
  
@@ -226,7 +236,7 @@ let createTask = ()=>{
        let  id = elem +1 
         if (fields.background === 'white') {
             task = {
-                id: id,
+               // id: id,
                name: input.value,
                color: '#fff',
    
@@ -235,7 +245,7 @@ let createTask = ()=>{
            
        } else{
         task = {
-            id: id,
+           // id: id,
             name: input.value,
             color: '#25273c',
  
@@ -247,7 +257,7 @@ let createTask = ()=>{
 }  else{
     if (fields.background === 'white') {
         task = {
-            id: 0,
+          //  id: 0,
            name: input.value,
            color: '#fff',
 
@@ -256,7 +266,7 @@ let createTask = ()=>{
    }  else{
      
     task = {
-        id: 0,
+       
         name: input.value,
         color: '#25273c',
 
@@ -266,10 +276,13 @@ let createTask = ()=>{
 
 
 }
+
 array.push(task)
 store.setItem('tasks', JSON.stringify(array))
 dataLoading() 
 }
+
+
 
 formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)
