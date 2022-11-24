@@ -39,8 +39,9 @@ const fields = {
 }
 //функции 
  let render = ()=>{
-   
-        if(store.getItem('tasks')) {
+        let array = JSON.parse(store.getItem('tasks'))
+
+        if(array.length>0) {
 
     let html =   workTaskList.map((task)=>{
         return `
@@ -53,7 +54,7 @@ const fields = {
                 </label>
                 <div class="task__text" style="color: ${task.color};">${task.name}</div>
             </div>
-            <div class="task__right"> <img src="./styles/image/icon-cross.svg" alt="icon-cross"></div>
+            <div class="task__right" onclick="deleteTask(${task.id})"> <img src="./styles/image/icon-cross.svg" alt="icon-cross"></div>
         </div>
     </div>
         
@@ -61,9 +62,11 @@ const fields = {
     })
     taskList.innerHTML = html
  
-} else{
+} else if (array.length === 0){
     html = `<h1 class = 'task__massage'>No task list</h1>`
     taskList.innerHTML = html
+} else {
+    return
 }
  }
     
@@ -82,12 +85,14 @@ const fields = {
         ginirateId(workTaskList)
         render()
     } else{
-       // store.setItem('tasks', JSON.stringify(tasks))
         render()
         console.log('render')
     }
 
  }
+
+
+
 
  
   dataLoading() 
@@ -281,7 +286,11 @@ array.push(task)
 store.setItem('tasks', JSON.stringify(array))
 dataLoading() 
 }
-
+let deleteTask = (id)=>{
+        workTaskList.splice(id,1)
+        ginirateId(workTaskList)
+        render()
+}
 
 
 formSubmit.addEventListener('submit',preventForm )
