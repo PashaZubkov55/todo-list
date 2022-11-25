@@ -18,6 +18,7 @@ const del = document.querySelectorAll('.task__right')
 // сохранненые данные 
 let tasks =[] 
 const store = localStorage
+store.setItem('tasks',JSON.stringify([]))
 //рабочий масив 
 
 let workTaskList = JSON.parse(store.getItem('tasks'))
@@ -179,7 +180,7 @@ let onHoverOption = ()=>{
 let taskFilter = (array)=>{
    let arrayFiltered = array.concat()
    return arrayFiltered.filter((item)=>{
-        return  item.name.indexOf(input.value) !== -1
+        return   item.name.indexOf(input.value) !== -1
       
     })  
     
@@ -193,6 +194,7 @@ let taskFilter = (array)=>{
                 
             }
             workTaskList = taskFilter(JSON.parse(store.getItem('tasks')))
+            
             render()
             
             
@@ -280,9 +282,9 @@ store.setItem('tasks', JSON.stringify(array))
 dataLoading() 
 }
 let deleteTask = (id)=>{
-        workTaskList.splice(id,1)
-        ginirateId(workTaskList)
-        render()
+    workTaskList.splice(id,1)
+    ginirateId(workTaskList)
+    render()
 }
 
 
