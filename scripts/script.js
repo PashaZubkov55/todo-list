@@ -1,5 +1,5 @@
 //поля
- const body = document.querySelector('body')
+const body = document.querySelector('body')
 const trigger = document.querySelector('.main__trigger')
 const input  = document.querySelector('.search_task')
 const taskList = document.querySelector('.tasks__wrapper')
@@ -16,20 +16,10 @@ const del = document.querySelectorAll('.task__right')
 
 
 // сохранненые данные 
-let tasks =[
-{
-    name: 'aa',
-    color: '#fff'
-
-},
-{
-    name: 'task2',
-    color: '#fff'
-
-}
-] 
+let tasks =[] 
 const store = localStorage
 //рабочий масив 
+
 let workTaskList = JSON.parse(store.getItem('tasks'))
  
 
@@ -38,6 +28,7 @@ const fields = {
     filtred: true
 }
 //функции 
+
  let render = ()=>{
         let array = JSON.parse(store.getItem('tasks'))
 
@@ -62,7 +53,7 @@ const fields = {
     })
     taskList.innerHTML = html
  
-} else if (array.length === 0){
+} else if (array.length === 0 || !array){
     html = `<h1 class = 'task__massage'>No task list</h1>`
     taskList.innerHTML = html
 } else {
@@ -85,6 +76,8 @@ const fields = {
         ginirateId(workTaskList)
         render()
     } else{
+
+        store.setItem('tasks',  JSON.stringify([]))
         render()
         console.log('render')
     }
