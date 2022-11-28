@@ -175,8 +175,12 @@ main{
 .tasks__options-mobile{
     display: none;
 }
+.complitedList{
+    text-decoration: line-through;
 
+}
 
+/*media*/
 @media(max-width: 1000px){
     .main{
         bottom: 4rem;

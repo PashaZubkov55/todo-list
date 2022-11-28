@@ -6,17 +6,17 @@ const taskList = document.querySelector('.tasks__wrapper')
 const form = document.querySelector('.form__header')
 const formSubmit = document.querySelector('.form')
 const taskText = document.querySelectorAll('.task__text')
+const  checkList = document.querySelectorAll(' .check')
 const tasksOptions = document.querySelector('.tasks__options')
 const header = document.querySelector('.header')
 const optionsItems = document.querySelectorAll('.options__item')
-const fake = document.querySelector('#fake_check')
+const fake = document.querySelectorAll('.fake_check')
 const check = document.querySelector('#check')
 const checkBoxList = document.querySelectorAll('#heckBoxList')
 const del = document.querySelectorAll('.task__right')
 const  tasksOptionMobile = document.querySelector('.tasks__options-mobile')
 const counter = document.querySelector('.options__counter')
 
-//#DBD7D2
 // сохранненые данные 
 let tasks =[] 
 const store = localStorage
@@ -42,7 +42,7 @@ const fields = {
         <div class="task__wrapper">
             <div class="task__left">
                 <label  class="form__label label">
-                    <input class="check check_search" type="checkbox">
+                    <input class="check check_search" type="checkbox" data-task="done" >
                     <span class="fake fake_check" style="border-color: ${task.borderColor}" id= 'heckBoxList'></span>
                 </label>
                 <div class="task__text" style="color: ${task.color};">${task.name}</div>
@@ -72,25 +72,31 @@ const fields = {
     store.setItem('tasks', JSON.stringify(array))
 
 }
+
+let counterTask = ()=>{
+    let  array =  JSON.parse(store.getItem('tasks'))  
+    counter.innerHTML = `${array.length} items left`   
+ }
+
  let dataLoading = ()=>{
     if (store.getItem('tasks')) {
         workTaskList = JSON.parse(store.getItem('tasks'))
         ginirateId(workTaskList)
         render()
+        counterTask()
     } else{
 
         store.setItem('tasks',  JSON.stringify([]))
         render()
+        counterTask()
         console.log('render')
+
     }
 
- }
-
-
-
-
- 
-  dataLoading() 
+ } 
+  dataLoading()
+  
+  
 
 
 let chencheBackground = ()=>{
@@ -246,6 +252,7 @@ let createTask = ()=>{
                name: input.value,
                color: '#fff',
                borderColor: '#36384d',
+               Complited: false,
    
            }  
 
@@ -255,7 +262,7 @@ let createTask = ()=>{
             name: input.value,
             color: '#25273c',
             borderColor: '#36384d',
- 
+            Complited: false,
         }
         
     }
@@ -268,6 +275,7 @@ let createTask = ()=>{
            name: input.value,
            color: '#fff',
            borderColor: '#36384d',
+           Complited: false,
 
        }  
        
@@ -277,6 +285,7 @@ let createTask = ()=>{
         name: input.value,
         color: '#25273c',
         borderColor: '#36384d',
+        Complited: false,
 
     }
     
@@ -293,13 +302,29 @@ let deleteTask = (id)=>{
     workTaskList.splice(id,1)
     ginirateId(workTaskList)
     render()
+    counterTask()
 }
-let counterTask = ()=>{
-   let  array =  JSON.parse(store.getItem('tasks'))  
-   counter.innerHTML = `${array.length} items left`   
-}
-counterTask() 
 
+ let taskComplited = (event, id)=>{
+    if (event.target.dataset.task === 'done') {
+       const node = event.target.closest('.task__wrapper')
+       let text =  node.querySelector('.task__text')
+       console.log(node.indexOf)
+       text.classList.add('complitedList')
+       store.setItem('tasks', JSON.stringify(workTaskList))
+    }
+       
+    }
+   
+
+        
+    
+ 
+    
+    
+
+
+document.addEventListener('click', taskComplited)
 formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)
 document.addEventListener('keyup', inputChenge)
