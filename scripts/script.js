@@ -9,16 +9,17 @@ const taskText = document.querySelectorAll('.task__text')
 const tasksOptions = document.querySelector('.tasks__options')
 const header = document.querySelector('.header')
 const optionsItems = document.querySelectorAll('.options__item')
-let fake = document.querySelectorAll('.fake_check')
+const fake = document.querySelector('#fake_check')
 const check = document.querySelector('#check')
 const checkBoxList = document.querySelectorAll('#heckBoxList')
 const del = document.querySelectorAll('.task__right')
+const  tasksOptionMobile = document.querySelector('.tasks__options-mobile')
+const counter = document.querySelector('.options__counter')
 
-
+//#DBD7D2
 // сохранненые данные 
 let tasks =[] 
 const store = localStorage
-store.setItem('tasks',JSON.stringify([]))
 //рабочий масив 
 
 let workTaskList = JSON.parse(store.getItem('tasks'))
@@ -42,7 +43,7 @@ const fields = {
             <div class="task__left">
                 <label  class="form__label label">
                     <input class="check check_search" type="checkbox">
-                    <span class="fake fake_check" id= 'heckBoxList'></span>
+                    <span class="fake fake_check" style="border-color: ${task.borderColor}" id= 'heckBoxList'></span>
                 </label>
                 <div class="task__text" style="color: ${task.color};">${task.name}</div>
             </div>
@@ -103,8 +104,11 @@ let chencheBackground = ()=>{
         taskList.style.backgroundColor = '#fff'
         form.style.backgroundColor = '#fff'
         tasksOptions.style.backgroundColor = '#fff'
+        tasksOptionMobile.style.backgroundColor = '#fff'
+        check.style.borderColor='#DBD7D2'
       for (item of  workTaskList ) {
             item.color = '#25273c' 
+            item.borderColor='#DBD7D2'
       }   
     }
     else{
@@ -117,8 +121,11 @@ let chencheBackground = ()=>{
         taskList.style.backgroundColor = '#25273c'
         form.style.backgroundColor = '#25273c'
         tasksOptions.style.backgroundColor = '#25273c'
+        tasksOptionMobile.style.backgroundColor = '#25273c'
+        check.style.borderColor='#36384d'
         for (item of  workTaskList ) {
             item.color = '#fff'
+            item.borderColor='#36384d'
     
     }
 }
@@ -236,18 +243,18 @@ let createTask = ()=>{
        let  id = elem +1 
         if (fields.background === 'white') {
             task = {
-               // id: id,
                name: input.value,
                color: '#fff',
+               borderColor: '#36384d',
    
            }  
 
            
        } else{
         task = {
-           // id: id,
             name: input.value,
             color: '#25273c',
+            borderColor: '#36384d',
  
         }
         
@@ -257,18 +264,19 @@ let createTask = ()=>{
 }  else{
     if (fields.background === 'white') {
         task = {
-          //  id: 0,
+
            name: input.value,
            color: '#fff',
+           borderColor: '#36384d',
 
        }  
        
    }  else{
      
     task = {
-       
         name: input.value,
         color: '#25273c',
+        borderColor: '#36384d',
 
     }
     
@@ -286,7 +294,11 @@ let deleteTask = (id)=>{
     ginirateId(workTaskList)
     render()
 }
-
+let counterTask = ()=>{
+   let  array =  JSON.parse(store.getItem('tasks'))  
+   counter.innerHTML = `${array.length} items left`   
+}
+counterTask() 
 
 formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)

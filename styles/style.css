@@ -172,11 +172,49 @@ main{
     color:red;
     padding: 20px 0;
 }
+.tasks__options-mobile{
+    display: none;
+}
 
 
+@media(max-width: 1000px){
+    .main{
+        bottom: 4rem;
+    }
+    .main__wrapper{
+        font-size: 5px;
+        padding: 0px 15px;
+    }
+}
+@media(max-width: 600px){
+    .options__center{
+        display: none;
+    }
+    .tasks__options{
+        justify-content: space-between;
+    }
+    .tasks__options-mobile{
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+        border-radius: 15px;
+    }
+    .options__center_mobile{
+        display: flex;
+    }
+}
 
 
-
+@media(max-width: 400px){
+    .main{
+        bottom: 4rem;
+        display: block;
+    }
+    .main__wrapper{
+        font-size: 5px;
+        padding: 0px 3px;
+    }
+}
 
 
 
