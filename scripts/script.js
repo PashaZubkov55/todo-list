@@ -38,14 +38,14 @@ const fields = {
 
     let html =   workTaskList.map((task)=>{
         return `
-        <div class="task">
+        <div class="task" id ='${task.id}'>
         <div class="task__wrapper">
             <div class="task__left">
                 <label  class="form__label label">
                     <input class="check check_search" type="checkbox" data-task="done" >
                     <span class="fake fake_check" style="border-color: ${task.borderColor}" id= 'heckBoxList'></span>
                 </label>
-                <div class="task__text" style="color: ${task.color};">${task.name}</div>
+                <div  class="task__text"   style="color: ${task.color};">${task.name}</div>
             </div>
             <div class="task__right" onclick="deleteTask(${task.id})"> <img src="./styles/image/icon-cross.svg" alt="icon-cross"></div>
         </div>
@@ -307,9 +307,10 @@ let deleteTask = (id)=>{
 
  let taskComplited = (event, id)=>{
     if (event.target.dataset.task === 'done') {
-       const node = event.target.closest('.task__wrapper')
+       const node = event.target.closest('.task')
+       let  elementId = Number(node.id)
+       workTaskList[elementId].Complited = true
        let text =  node.querySelector('.task__text')
-       console.log(node.indexOf)
        text.classList.add('complitedList')
        store.setItem('tasks', JSON.stringify(workTaskList))
     }
