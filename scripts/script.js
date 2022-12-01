@@ -16,6 +16,8 @@ const checkBoxList = document.querySelectorAll('#heckBoxList')
 const del = document.querySelectorAll('.task__right')
 const  tasksOptionMobile = document.querySelector('.tasks__options-mobile')
 const counter = document.querySelector('.options__counter')
+const desctopOption = document.querySelector('#desctopOption')
+const mobileOption = document.querySelector('#mobileOption')
 
 // сохранненые данные 
 let tasks =[] 
@@ -42,8 +44,8 @@ const fields = {
         <div class="task__wrapper">
             <div class="task__left">
                 <label  class="form__label label">
-                    <input class="check check_search" type="checkbox" data-task="done" >
-                    <span class="fake fake_check" style="border-color: ${task.borderColor}" id= 'heckBoxList'></span>
+                    <input class="check check_search" type="checkbox" data-task = 'done' >
+                    <span class="fake fake_check" data-arg='arg' style="border-color: ${task.borderColor}" id= 'heckBoxList'></span>
                 </label>
                 <div  class="task__text"   style="color: ${task.color};">${task.name}</div>
             </div>
@@ -75,6 +77,7 @@ const fields = {
 
 let counterTask = ()=>{
     let  array =  JSON.parse(store.getItem('tasks'))  
+        
     counter.innerHTML = `${array.length} items left`   
  }
 
@@ -317,10 +320,58 @@ let deleteTask = (id)=>{
        
     }
    
+    let optionFiltered=( atribute, array)=>{
 
+            if (atribute === 'active') {
+                return array.filter((item)=>{
+                    return item.Complited === false
+                })
+               
+            } else if(atribute ==='completid'){
+                return array.filter((item)=>{
+                    return item.Complited === true
+                })
+
+            }   else{
+                return array.filter((item)=>{
+                    return item
+                })
+            }
+               
         
-    
- 
+            
+    }
+       
+    let desctopActiveTask = ()=>{
+            let elem;
+          optionsItems.forEach((item)=>{
+            item.addEventListener('click',(event)=>{
+                elem =  event.target.getAttribute('filtered')
+               workTaskList = optionFiltered(elem, JSON.parse(store.getItem('tasks')))
+               
+            })
+           
+          })
+          render()
+
+    }
+       
+
+            
+
+       let mobileActiveTask = ()=>{
+        let elem;
+      optionsItems.forEach((item)=>{
+        item.addEventListener('click',(event)=>{
+            elem =  event.target.getAttribute('filtered')
+           workTaskList = optionFiltered(elem, JSON.parse(store.getItem('tasks')))
+           
+        })
+       
+      })
+      render()
+
+}
     
     
 
@@ -331,4 +382,6 @@ check.addEventListener('click', inputCheck)
 document.addEventListener('keyup', inputChenge)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
+desctopOption.addEventListener('click',  desctopActiveTask)
+mobileOption.addEventListener('click', mobileActiveTask)
 trigger.addEventListener('click', chencheBackground)
