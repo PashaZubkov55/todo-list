@@ -18,9 +18,8 @@ const  tasksOptionMobile = document.querySelector('.tasks__options-mobile')
 const counter = document.querySelector('.options__counter')
 const desctopOption = document.querySelector('#desctopOption')
 const mobileOption = document.querySelector('#mobileOption')
+const complited = document.querySelector('.options__right') 
 
-// сохранненые данные 
-let tasks =[] 
 const store = localStorage
 //рабочий масив 
 
@@ -308,7 +307,7 @@ let deleteTask = (id)=>{
     counterTask()
 }
 
- let taskComplited = (event, id)=>{
+ let taskComplited = (event)=>{
     if (event.target.dataset.task === 'done') {
        const node = event.target.closest('.task')
        let  elementId = Number(node.id)
@@ -342,7 +341,7 @@ let deleteTask = (id)=>{
             
     }
        
-    let desctopActiveTask = ()=>{
+    let ActiveTask = ()=>{
             let elem;
           optionsItems.forEach((item)=>{
             item.addEventListener('click',(event)=>{
@@ -356,25 +355,22 @@ let deleteTask = (id)=>{
 
     }
        
-
-            
-
-       let mobileActiveTask = ()=>{
-        let elem;
-      optionsItems.forEach((item)=>{
-        item.addEventListener('click',(event)=>{
-            elem =  event.target.getAttribute('filtered')
-           workTaskList = optionFiltered(elem, JSON.parse(store.getItem('tasks')))
-           
-        })
-       
-      })
-      render()
-
+let clearComplitedFilter = (array)=>{
+    return array.filter((item)=>{
+        return item.Complited === false
+    })
 }
-    
-    
 
+    let clearComplitted  = ()=>{
+       let  array = JSON.parse(store.getItem('tasks')) 
+        workTaskList = clearComplitedFilter(array)
+        store.setItem('tasks', JSON.stringify(workTaskList))
+        render()
+    }      
+
+      
+    
+    
 
 document.addEventListener('click', taskComplited)
 formSubmit.addEventListener('submit',preventForm )
@@ -382,6 +378,7 @@ check.addEventListener('click', inputCheck)
 document.addEventListener('keyup', inputChenge)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
-desctopOption.addEventListener('click',  desctopActiveTask)
-mobileOption.addEventListener('click', mobileActiveTask)
+desctopOption.addEventListener('click',  ActiveTask)
+mobileOption.addEventListener('click', ActiveTask)
 trigger.addEventListener('click', chencheBackground)
+complited.addEventListener('click', clearComplitted)
