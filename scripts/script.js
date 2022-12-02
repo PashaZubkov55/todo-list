@@ -1,6 +1,6 @@
 //поля
 const body = document.querySelector('body')
-const trigger = document.querySelector('.main__trigger')
+//const trigger = document.querySelector('.main__trigger')
 const input  = document.querySelector('.search_task')
 const taskList = document.querySelector('.tasks__wrapper')
 const form = document.querySelector('.form__header')
@@ -299,10 +299,7 @@ let createTask = ()=>{
 
     }
     
-}
-
-
-}
+}}
 
 array.push(task)
 store.setItem('tasks', JSON.stringify(array))
@@ -400,5 +397,5 @@ tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
 desctopOption.addEventListener('click',  ActiveTask)
 mobileOption.addEventListener('click', ActiveTask)
-trigger.addEventListener('click', chencheBackground)
+//trigger.addEventListener('click', chencheBackground)
 complited.addEventListener('click', clearComplitted)
