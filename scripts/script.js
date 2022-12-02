@@ -75,9 +75,16 @@ const fields = {
 
 }
 
+
+let counterFilter=(array)=>{
+    return array.filter((task)=>{
+            return task.Complited === false
+    })
+}
+
 let counterTask = ()=>{
-    let  array =  JSON.parse(store.getItem('tasks'))  
-        
+    
+     let array = counterFilter(JSON.parse(store.getItem('tasks')))
     counter.innerHTML = `${array.length} items left`   
  }
 
@@ -359,6 +366,7 @@ let deleteTask = (id)=>{
            
           })
           render()
+          counterTask()
 
     }
        
@@ -368,13 +376,17 @@ let clearComplitedFilter = (array)=>{
     })
 }
 
+
+
     let clearComplitted  = ()=>{
        let  array = JSON.parse(store.getItem('tasks')) 
         workTaskList = clearComplitedFilter(array)
         store.setItem('tasks', JSON.stringify(workTaskList))
         render()
         counterTask()
-    }      
+    } 
+    
+    
 
       
     
@@ -384,7 +396,6 @@ document.addEventListener('click', taskComplited)
 formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)
 document.addEventListener('keyup', inputChenge)
-//taskList.addEventListener('click', deleteTask)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
 desctopOption.addEventListener('click',  ActiveTask)
