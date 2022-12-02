@@ -19,6 +19,7 @@ const counter = document.querySelector('.options__counter')
 const desctopOption = document.querySelector('#desctopOption')
 const mobileOption = document.querySelector('#mobileOption')
 const complited = document.querySelector('.options__right') 
+const delTask = document.querySelector('.task__right')
 
 const store = localStorage
 //рабочий масив 
@@ -48,7 +49,7 @@ const fields = {
                 </label>
                 <div  class="task__text"   style="color: ${task.color};">${task.name}</div>
             </div>
-            <div class="task__right" onclick="deleteTask(${task.id})"> <img src="./styles/image/icon-cross.svg" alt="icon-cross"></div>
+            <div class="task__right" onclick="deleteTask(${task.id})"> <img src="./styles/image/icon-cross.svg" alt="icon-cross" ></div>
         </div>
     </div>
         
@@ -301,7 +302,13 @@ store.setItem('tasks', JSON.stringify(array))
 dataLoading() 
 }
 let deleteTask = (id)=>{
-    workTaskList.splice(id,1)
+    let array  =  JSON.parse(store.getItem('tasks'))
+       workTaskList = array.filter((task)=>{
+           return task.id !== id
+      
+        
+    })
+    input.value = ''
     ginirateId(workTaskList)
     render()
     counterTask()
@@ -366,6 +373,7 @@ let clearComplitedFilter = (array)=>{
         workTaskList = clearComplitedFilter(array)
         store.setItem('tasks', JSON.stringify(workTaskList))
         render()
+        counterTask()
     }      
 
       
@@ -376,6 +384,7 @@ document.addEventListener('click', taskComplited)
 formSubmit.addEventListener('submit',preventForm )
 check.addEventListener('click', inputCheck)
 document.addEventListener('keyup', inputChenge)
+//taskList.addEventListener('click', deleteTask)
 tasksOptions.addEventListener('mouseout', onHoverOption)
 tasksOptions.addEventListener('mouseover',hoverOption)
 desctopOption.addEventListener('click',  ActiveTask)
