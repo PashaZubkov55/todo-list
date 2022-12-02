@@ -216,7 +216,9 @@ main{
     }
     .main__wrapper{
         font-size: 5px;
-        padding: 0px 3px;
+    }
+    .search_task{
+        width: 250px;
     }
 }
 
