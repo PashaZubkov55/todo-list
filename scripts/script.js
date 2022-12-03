@@ -65,13 +65,16 @@ const fields = {
 }
  }
     
+ let saveTaskList =(array)=>{
+    store.setItem('tasks', JSON.stringify(array))
+ }
  let ginirateId = (array)=>{
     for (let index = 0; index < array.length; index++) {
         let id = index
          array[index].id = id
         console.log(array[index])
     }
-    store.setItem('tasks', JSON.stringify(array))
+    
 
 }
 
@@ -92,6 +95,7 @@ let counterTask = ()=>{
     if (store.getItem('tasks')) {
         workTaskList = JSON.parse(store.getItem('tasks'))
         ginirateId(workTaskList)
+        saveTaskList(workTaskList)
         render()
         counterTask()
     } else{
@@ -314,6 +318,7 @@ let deleteTask = (id)=>{
     })
     input.value = ''
     ginirateId(workTaskList)
+    saveTaskList(workTaskList)
     render()
     counterTask()
 }
@@ -378,9 +383,11 @@ let clearComplitedFilter = (array)=>{
     let clearComplitted  = ()=>{
        let  array = JSON.parse(store.getItem('tasks')) 
         workTaskList = clearComplitedFilter(array)
-        store.setItem('tasks', JSON.stringify(workTaskList))
+       // store.setItem('tasks', JSON.stringify(workTaskList))
         render()
         counterTask()
+        ginirateId(workTaskList)
+        saveTaskList(workTaskList)
     } 
     
     
