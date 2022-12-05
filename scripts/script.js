@@ -29,7 +29,7 @@ let workTaskList = JSON.parse(store.getItem('tasks'))
 
 const fields = {
     background: 'white',
-    filtred: true
+    filtred: true, 
 }
 //функции 
 
@@ -43,7 +43,7 @@ const fields = {
         <div class="task" id ='${task.id}'>
         <div class="task__wrapper">
             <div class="task__left">
-                <label  class="form__label label">
+                <label  class="form__label label "  style= 'display: ${task.display}'>
                     <input class="check check_search" type="checkbox" data-task = 'done' >
                     <span class="fake fake_check" data-arg='arg' style="border-color: ${task.borderColor}" id= 'heckBoxList'></span>
                 </label>
@@ -65,6 +65,7 @@ const fields = {
 }
  }
     
+ 
  let saveTaskList =(array)=>{
     store.setItem('tasks', JSON.stringify(array))
  }
@@ -206,10 +207,21 @@ let onHoverOption = ()=>{
 
 let taskFilter = (array)=>{
    let arrayFiltered = array.concat()
+   
+
    return arrayFiltered.filter((item)=>{
-        return   item.name.indexOf(input.value) !== -1
-      
+        return  item.name.indexOf(input.value) !== -1
+            
     })  
+
+    
+    
+}
+let checktasks = (display)=>{
+    debugger
+   for( item of workTaskList){
+    item.display = display
+   }
     
 }
 
@@ -217,12 +229,16 @@ let taskFilter = (array)=>{
     if (event.keyCode == 13) {
         if (fields.filtred) {
             if (input.value === '') {
+                checktasks('block')
                 render()
                 
+            }else{
+                workTaskList = taskFilter(JSON.parse(store.getItem('tasks')))
+                checktasks('none')
+                render()
             }
-            workTaskList = taskFilter(JSON.parse(store.getItem('tasks')))
-            
-            render()
+           
+           
             
             
         }else{
@@ -267,6 +283,7 @@ let createTask = ()=>{
                color: '#fff',
                borderColor: '#36384d',
                Complited: false,
+               display : 'block',
    
            }  
 
@@ -277,6 +294,7 @@ let createTask = ()=>{
             color: '#25273c',
             borderColor: '#36384d',
             Complited: false,
+            display : 'block',
         }
         
     }
@@ -290,6 +308,7 @@ let createTask = ()=>{
            color: '#fff',
            borderColor: '#36384d',
            Complited: false,
+           display : 'block',
 
        }  
        
@@ -300,6 +319,7 @@ let createTask = ()=>{
         color: '#25273c',
         borderColor: '#36384d',
         Complited: false,
+        display : 'block',
 
     }
     
